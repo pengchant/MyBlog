@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     name: test
-    url: jdbc:mysql://127.0.0.1:3306/mytest
+    url: jdbc:mysql://127.0.0.1:3306/myblog
     username: root
     password: root
     # 使用druid数据源
@@ -26,8 +26,8 @@ spring:
 
   redis:
     host: 127.0.0.1
-    port: 6739
-    password: yangzi
+    port: 6379
+    password: xiaopeng
     pool:
       max-active: 1000
       max-wait: -1
@@ -47,4 +47,10 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+
+# mytoken
+mytoken:
+  appkey: 978dfsa7fc3a34e1261dsafec1245d
+  ttlmillis:  1800000 # 测试设置30min过期1800000
+
 

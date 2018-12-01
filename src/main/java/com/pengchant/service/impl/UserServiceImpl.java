@@ -2,7 +2,9 @@ package com.pengchant.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.pengchant.mapper.BlogUserMapper;
 import com.pengchant.mapper.UserMapper;
+import com.pengchant.model.BlogUser;
 import com.pengchant.model.User;
 import com.pengchant.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private BlogUserMapper blogUserMapper;
+
 
     /**
      * 查询所有的用户
@@ -32,5 +37,10 @@ public class UserServiceImpl implements IUserService {
         PageHelper.startPage(pageNum, pageSize);
         PageInfo<User> pagedUser = new PageInfo<>(userMapper.selectAllUser());
         return pagedUser;
+    }
+
+    @Override
+    public BlogUser findUserById(int userId) {
+        return blogUserMapper.selectByPrimaryKey(userId);
     }
 }

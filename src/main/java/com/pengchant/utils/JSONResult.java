@@ -47,6 +47,7 @@ public class JSONResult {
     // 响应中的数据
     private Object data;
 
+
     public static JSONResult build(Integer status, String msg, Object data) {
         return new JSONResult(status, msg, data);
     }
@@ -63,8 +64,8 @@ public class JSONResult {
         return new JSONResult(500, msg, null);
     }
 
-    public static JSONResult errorMap(Object data) {
-        return new JSONResult(501, "error", data);
+    public static JSONResult errorMsgData(String msg, Object data) {
+        return new JSONResult(501,  msg, data);
     }
 
     public static JSONResult errorTokenMsg(String msg) {

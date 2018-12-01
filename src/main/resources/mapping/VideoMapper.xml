@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pengchant.mapper.VideoMapper" >
+  <resultMap id="BaseResultMap" type="com.pengchant.model.Video" >
+    <id column="video_id" property="videoId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="videourl" property="videourl" jdbcType="VARCHAR" />
+    <result column="sts" property="sts" jdbcType="TINYINT" />
+    <result column="subtime" property="subtime" jdbcType="TIMESTAMP" />
+    <result column="articleid" property="articleid" jdbcType="INTEGER" />
+    <result column="b_1" property="b1" jdbcType="CHAR" />
+    <result column="b_2" property="b2" jdbcType="CHAR" />
+    <result column="b_3" property="b3" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    video_id, title, videourl, sts, subtime, articleid, b_1, b_2, b_3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from video
+    where video_id = #{videoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from video
+    where video_id = #{videoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.pengchant.model.Video" >
+    insert into video (video_id, title, videourl, 
+      sts, subtime, articleid, 
+      b_1, b_2, b_3)
+    values (#{videoId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{videourl,jdbcType=VARCHAR}, 
+      #{sts,jdbcType=TINYINT}, #{subtime,jdbcType=TIMESTAMP}, #{articleid,jdbcType=INTEGER}, 
+      #{b1,jdbcType=CHAR}, #{b2,jdbcType=CHAR}, #{b3,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pengchant.model.Video" >
+    insert into video
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="videoId != null" >
+        video_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="videourl != null" >
+        videourl,
+      </if>
+      <if test="sts != null" >
+        sts,
+      </if>
+      <if test="subtime != null" >
+        subtime,
+      </if>
+      <if test="articleid != null" >
+        articleid,
+      </if>
+      <if test="b1 != null" >
+        b_1,
+      </if>
+      <if test="b2 != null" >
+        b_2,
+      </if>
+      <if test="b3 != null" >
+        b_3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="videoId != null" >
+        #{videoId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="videourl != null" >
+        #{videourl,jdbcType=VARCHAR},
+      </if>
+      <if test="sts != null" >
+        #{sts,jdbcType=TINYINT},
+      </if>
+      <if test="subtime != null" >
+        #{subtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="articleid != null" >
+        #{articleid,jdbcType=INTEGER},
+      </if>
+      <if test="b1 != null" >
+        #{b1,jdbcType=CHAR},
+      </if>
+      <if test="b2 != null" >
+        #{b2,jdbcType=CHAR},
+      </if>
+      <if test="b3 != null" >
+        #{b3,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pengchant.model.Video" >
+    update video
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="videourl != null" >
+        videourl = #{videourl,jdbcType=VARCHAR},
+      </if>
+      <if test="sts != null" >
+        sts = #{sts,jdbcType=TINYINT},
+      </if>
+      <if test="subtime != null" >
+        subtime = #{subtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="articleid != null" >
+        articleid = #{articleid,jdbcType=INTEGER},
+      </if>
+      <if test="b1 != null" >
+        b_1 = #{b1,jdbcType=CHAR},
+      </if>
+      <if test="b2 != null" >
+        b_2 = #{b2,jdbcType=CHAR},
+      </if>
+      <if test="b3 != null" >
+        b_3 = #{b3,jdbcType=CHAR},
+      </if>
+    </set>
+    where video_id = #{videoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pengchant.model.Video" >
+    update video
+    set title = #{title,jdbcType=VARCHAR},
+      videourl = #{videourl,jdbcType=VARCHAR},
+      sts = #{sts,jdbcType=TINYINT},
+      subtime = #{subtime,jdbcType=TIMESTAMP},
+      articleid = #{articleid,jdbcType=INTEGER},
+      b_1 = #{b1,jdbcType=CHAR},
+      b_2 = #{b2,jdbcType=CHAR},
+      b_3 = #{b3,jdbcType=CHAR}
+    where video_id = #{videoId,jdbcType=INTEGER}
+  </update>
+</mapper>

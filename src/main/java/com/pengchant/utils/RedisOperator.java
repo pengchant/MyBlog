@@ -14,6 +14,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class RedisOperator {
 
+    /**
+     * 用户的session名称
+     */
+    public static final String USER_REDIS_SESSION="user-redis-session";
+
     @Autowired
     private StringRedisTemplate redisTemplate;
 
