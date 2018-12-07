@@ -19,6 +19,11 @@ public class RedisOperator {
      */
     public static final String USER_REDIS_SESSION="user-redis-session";
 
+    /**
+     * 用户验证session名称
+     */
+    public static  final String REGIST_SESSION = "regist-session";
+
     @Autowired
     private StringRedisTemplate redisTemplate;
 

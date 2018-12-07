@@ -10,8 +10,6 @@ import javax.validation.constraints.NotNull;
 @ApiModel(value = "用户对象", description = "用户实体")
 public class BlogUser {
 
-
-    @NotNull(message = "用户的id不能为空")
     @ApiModelProperty(hidden = true)
     private Integer userId;
 

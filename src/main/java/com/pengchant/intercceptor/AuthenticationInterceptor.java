@@ -75,38 +75,46 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             UserLoginToken userLoginToken = method.getAnnotation(UserLoginToken.class);
             if (userLoginToken.required()) {
                 try {
-                    // 执行认证
+                    //  1.查看token是否为空
                     if (token == null) {
                         showError(request, response, "TOKEN验证失败,请重新登录!");
                         return false;
                     }
 
-                    // 获取token中的user id
+                    // 2.获取其中的userid
                     String userId;
                     userId = JWT.decode(token).getSubject().toString();
-                    logger.info("拦截器中userid:" + userId);
 
-                    // 查看redis中是否存在该用户的登录信息
+                    // 3.查看redis中是否存在该用户的登录信息
                     String usr_session = REDIS.get(REDIS.USER_REDIS_SESSION + ":" + userId);
                     if (StringUtils.isEmpty(usr_session)) {// 提示重新登录
                         showError(request, response, "登录过期，请重新登录");
                         return false;
                     }
 
-                    // 查询用户的信息
+                    // 4.验证是否被篡改
+                    if(!StringUtils.equals(usr_session, token)){
+                        showError(request, response, "token非法，请重新登录!");
+                        return false;
+                    }
+
+                    // 5.查询用户的信息
                     BlogUser user = userService.findUserById(Integer.valueOf(userId));
                     if (user == null) {
                         showError(request, response, "此用户不存在，请重新登录!");
                         return false;
                     }
 
-                    // 验证token是否有效
+                    // 6.验证token是否有效（过期）
                     try {
                         Claims claims = TOKEN.parseJWT(token, user.getPwd());
                         logger.info("验证通过，当前的用户为:" + user.getUserId());
+                        // 把request设置在请求头中
+                        request.setAttribute("current-user", user.getUserId());
                     } catch (Exception e) {
                         // 过期异常，重新生成新的token
-                        logger.info("token过期异常，重新生成新的token");
+                        e.printStackTrace();
+                        logger.info("token过期异常，重新生成新的token",e.getMessage());
                         showError(request, response, "token过期异常，重新生成新的token");
                         return false;
                     }
@@ -122,7 +130,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
-
     }
 
     /**
@@ -135,7 +142,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-
+         request.removeAttribute("current-user");
     }
 
     /**

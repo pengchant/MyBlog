@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.pengchant.mapper.BlogUserMapper" >
-  <resultMap id="BaseResultMap" type="com.pengchant.model.BlogUser" >
-    <id column="user_id" property="userId" jdbcType="INTEGER" />
-    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
-    <result column="pwd" property="pwd" jdbcType="CHAR" />
-    <result column="phonenum" property="phonenum" jdbcType="CHAR" />
-    <result column="p_chked" property="pChked" jdbcType="TINYINT" />
-    <result column="email" property="email" jdbcType="VARCHAR" />
-    <result column="e_cheked" property="eCheked" jdbcType="TINYINT" />
-    <result column="qq" property="qq" jdbcType="CHAR" />
-    <result column="weixinid" property="weixinid" jdbcType="CHAR" />
-    <result column="weiboid" property="weiboid" jdbcType="CHAR" />
-    <result column="sts" property="sts" jdbcType="TINYINT" />
-    <result column="headimgurl" property="headimgurl" jdbcType="VARCHAR" />
-    <result column="friends" property="friends" jdbcType="INTEGER" />
-    <result column="articles" property="articles" jdbcType="INTEGER" />
-    <result column="b_1" property="b1" jdbcType="CHAR" />
-    <result column="b_2" property="b2" jdbcType="CHAR" />
-    <result column="b_3" property="b3" jdbcType="CHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.pengchant.mapper.BlogUserMapper">
+    <resultMap id="BaseResultMap" type="com.pengchant.model.BlogUser">
+        <id column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="nickname" property="nickname" jdbcType="VARCHAR"/>
+        <result column="pwd" property="pwd" jdbcType="CHAR"/>
+        <result column="phonenum" property="phonenum" jdbcType="CHAR"/>
+        <result column="p_chked" property="pChked" jdbcType="TINYINT"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="e_cheked" property="eCheked" jdbcType="TINYINT"/>
+        <result column="qq" property="qq" jdbcType="CHAR"/>
+        <result column="weixinid" property="weixinid" jdbcType="CHAR"/>
+        <result column="weiboid" property="weiboid" jdbcType="CHAR"/>
+        <result column="sts" property="sts" jdbcType="TINYINT"/>
+        <result column="headimgurl" property="headimgurl" jdbcType="VARCHAR"/>
+        <result column="friends" property="friends" jdbcType="INTEGER"/>
+        <result column="articles" property="articles" jdbcType="INTEGER"/>
+        <result column="b_1" property="b1" jdbcType="CHAR"/>
+        <result column="b_2" property="b2" jdbcType="CHAR"/>
+        <result column="b_3" property="b3" jdbcType="CHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     user_id, nickname, pwd, phonenum, p_chked, email, e_cheked, qq, weixinid, weiboid, 
     sts, headimgurl, friends, articles, b_1, b_2, b_3
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from bloguser
-    where user_id = #{userId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from bloguser
+        where user_id = #{userId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from bloguser
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.pengchant.model.BlogUser" >
+    <insert id="insert" parameterType="com.pengchant.model.BlogUser">
     insert into bloguser (user_id, nickname, pwd, 
       phonenum, p_chked, email, 
       e_cheked, qq, weixinid, weiboid, 
@@ -48,170 +48,170 @@
       #{articles,jdbcType=INTEGER}, #{b1,jdbcType=CHAR}, #{b2,jdbcType=CHAR}, #{b3,jdbcType=CHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.pengchant.model.BlogUser" >
-    insert into bloguser
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        user_id,
-      </if>
-      <if test="nickname != null" >
-        nickname,
-      </if>
-      <if test="pwd != null" >
-        pwd,
-      </if>
-      <if test="phonenum != null" >
-        phonenum,
-      </if>
-      <if test="pChked != null" >
-        p_chked,
-      </if>
-      <if test="email != null" >
-        email,
-      </if>
-      <if test="eCheked != null" >
-        e_cheked,
-      </if>
-      <if test="qq != null" >
-        qq,
-      </if>
-      <if test="weixinid != null" >
-        weixinid,
-      </if>
-      <if test="weiboid != null" >
-        weiboid,
-      </if>
-      <if test="sts != null" >
-        sts,
-      </if>
-      <if test="headimgurl != null" >
-        headimgurl,
-      </if>
-      <if test="friends != null" >
-        friends,
-      </if>
-      <if test="articles != null" >
-        articles,
-      </if>
-      <if test="b1 != null" >
-        b_1,
-      </if>
-      <if test="b2 != null" >
-        b_2,
-      </if>
-      <if test="b3 != null" >
-        b_3,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="nickname != null" >
-        #{nickname,jdbcType=VARCHAR},
-      </if>
-      <if test="pwd != null" >
-        #{pwd,jdbcType=CHAR},
-      </if>
-      <if test="phonenum != null" >
-        #{phonenum,jdbcType=CHAR},
-      </if>
-      <if test="pChked != null" >
-        #{pChked,jdbcType=TINYINT},
-      </if>
-      <if test="email != null" >
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="eCheked != null" >
-        #{eCheked,jdbcType=TINYINT},
-      </if>
-      <if test="qq != null" >
-        #{qq,jdbcType=CHAR},
-      </if>
-      <if test="weixinid != null" >
-        #{weixinid,jdbcType=CHAR},
-      </if>
-      <if test="weiboid != null" >
-        #{weiboid,jdbcType=CHAR},
-      </if>
-      <if test="sts != null" >
-        #{sts,jdbcType=TINYINT},
-      </if>
-      <if test="headimgurl != null" >
-        #{headimgurl,jdbcType=VARCHAR},
-      </if>
-      <if test="friends != null" >
-        #{friends,jdbcType=INTEGER},
-      </if>
-      <if test="articles != null" >
-        #{articles,jdbcType=INTEGER},
-      </if>
-      <if test="b1 != null" >
-        #{b1,jdbcType=CHAR},
-      </if>
-      <if test="b2 != null" >
-        #{b2,jdbcType=CHAR},
-      </if>
-      <if test="b3 != null" >
-        #{b3,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.pengchant.model.BlogUser" >
-    update bloguser
-    <set >
-      <if test="nickname != null" >
-        nickname = #{nickname,jdbcType=VARCHAR},
-      </if>
-      <if test="pwd != null" >
-        pwd = #{pwd,jdbcType=CHAR},
-      </if>
-      <if test="phonenum != null" >
-        phonenum = #{phonenum,jdbcType=CHAR},
-      </if>
-      <if test="pChked != null" >
-        p_chked = #{pChked,jdbcType=TINYINT},
-      </if>
-      <if test="email != null" >
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="eCheked != null" >
-        e_cheked = #{eCheked,jdbcType=TINYINT},
-      </if>
-      <if test="qq != null" >
-        qq = #{qq,jdbcType=CHAR},
-      </if>
-      <if test="weixinid != null" >
-        weixinid = #{weixinid,jdbcType=CHAR},
-      </if>
-      <if test="weiboid != null" >
-        weiboid = #{weiboid,jdbcType=CHAR},
-      </if>
-      <if test="sts != null" >
-        sts = #{sts,jdbcType=TINYINT},
-      </if>
-      <if test="headimgurl != null" >
-        headimgurl = #{headimgurl,jdbcType=VARCHAR},
-      </if>
-      <if test="friends != null" >
-        friends = #{friends,jdbcType=INTEGER},
-      </if>
-      <if test="articles != null" >
-        articles = #{articles,jdbcType=INTEGER},
-      </if>
-      <if test="b1 != null" >
-        b_1 = #{b1,jdbcType=CHAR},
-      </if>
-      <if test="b2 != null" >
-        b_2 = #{b2,jdbcType=CHAR},
-      </if>
-      <if test="b3 != null" >
-        b_3 = #{b3,jdbcType=CHAR},
-      </if>
-    </set>
-    where user_id = #{userId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.pengchant.model.BlogUser" >
+    <insert id="insertSelective" parameterType="com.pengchant.model.BlogUser">
+        insert into bloguser
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="nickname != null">
+                nickname,
+            </if>
+            <if test="pwd != null">
+                pwd,
+            </if>
+            <if test="phonenum != null">
+                phonenum,
+            </if>
+            <if test="pChked != null">
+                p_chked,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="eCheked != null">
+                e_cheked,
+            </if>
+            <if test="qq != null">
+                qq,
+            </if>
+            <if test="weixinid != null">
+                weixinid,
+            </if>
+            <if test="weiboid != null">
+                weiboid,
+            </if>
+            <if test="sts != null">
+                sts,
+            </if>
+            <if test="headimgurl != null">
+                headimgurl,
+            </if>
+            <if test="friends != null">
+                friends,
+            </if>
+            <if test="articles != null">
+                articles,
+            </if>
+            <if test="b1 != null">
+                b_1,
+            </if>
+            <if test="b2 != null">
+                b_2,
+            </if>
+            <if test="b3 != null">
+                b_3,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="nickname != null">
+                #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="pwd != null">
+                #{pwd,jdbcType=CHAR},
+            </if>
+            <if test="phonenum != null">
+                #{phonenum,jdbcType=CHAR},
+            </if>
+            <if test="pChked != null">
+                #{pChked,jdbcType=TINYINT},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="eCheked != null">
+                #{eCheked,jdbcType=TINYINT},
+            </if>
+            <if test="qq != null">
+                #{qq,jdbcType=CHAR},
+            </if>
+            <if test="weixinid != null">
+                #{weixinid,jdbcType=CHAR},
+            </if>
+            <if test="weiboid != null">
+                #{weiboid,jdbcType=CHAR},
+            </if>
+            <if test="sts != null">
+                #{sts,jdbcType=TINYINT},
+            </if>
+            <if test="headimgurl != null">
+                #{headimgurl,jdbcType=VARCHAR},
+            </if>
+            <if test="friends != null">
+                #{friends,jdbcType=INTEGER},
+            </if>
+            <if test="articles != null">
+                #{articles,jdbcType=INTEGER},
+            </if>
+            <if test="b1 != null">
+                #{b1,jdbcType=CHAR},
+            </if>
+            <if test="b2 != null">
+                #{b2,jdbcType=CHAR},
+            </if>
+            <if test="b3 != null">
+                #{b3,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.pengchant.model.BlogUser">
+        update bloguser
+        <set>
+            <if test="nickname != null">
+                nickname = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="pwd != null">
+                pwd = #{pwd,jdbcType=CHAR},
+            </if>
+            <if test="phonenum != null">
+                phonenum = #{phonenum,jdbcType=CHAR},
+            </if>
+            <if test="pChked != null">
+                p_chked = #{pChked,jdbcType=TINYINT},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="eCheked != null">
+                e_cheked = #{eCheked,jdbcType=TINYINT},
+            </if>
+            <if test="qq != null">
+                qq = #{qq,jdbcType=CHAR},
+            </if>
+            <if test="weixinid != null">
+                weixinid = #{weixinid,jdbcType=CHAR},
+            </if>
+            <if test="weiboid != null">
+                weiboid = #{weiboid,jdbcType=CHAR},
+            </if>
+            <if test="sts != null">
+                sts = #{sts,jdbcType=TINYINT},
+            </if>
+            <if test="headimgurl != null">
+                headimgurl = #{headimgurl,jdbcType=VARCHAR},
+            </if>
+            <if test="friends != null">
+                friends = #{friends,jdbcType=INTEGER},
+            </if>
+            <if test="articles != null">
+                articles = #{articles,jdbcType=INTEGER},
+            </if>
+            <if test="b1 != null">
+                b_1 = #{b1,jdbcType=CHAR},
+            </if>
+            <if test="b2 != null">
+                b_2 = #{b2,jdbcType=CHAR},
+            </if>
+            <if test="b3 != null">
+                b_3 = #{b3,jdbcType=CHAR},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.pengchant.model.BlogUser">
     update bloguser
     set nickname = #{nickname,jdbcType=VARCHAR},
       pwd = #{pwd,jdbcType=CHAR},
@@ -231,4 +231,20 @@
       b_3 = #{b3,jdbcType=CHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
+    <!-- 根据用户名查询用户 -->
+    <select id="searchByNick" resultType="long">
+        select count(1)
+        from bloguser b
+        where nickname=#{nickname}
+    </select>
+
+    <!-- 根据nickname/phone/email 查询 -->
+    <select id="queryLogin" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from bloguser
+        where nickname=#{accstr} or phonenum=#{accstr} or email=#{accstr}
+    </select>
+
 </mapper>
