@@ -1,9 +1,8 @@
 package com.pengchant.utils;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.parser.JSONReaderScanner;
 import com.pengchant.model.ArgumentInvalidResult;
-import org.springframework.validation.BindException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,6 +18,8 @@ import java.util.List;
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     /**
      * 全局异常处理
@@ -43,6 +44,7 @@ public class GlobalExceptionHandler {
             }
             errorObject = JSONResult.errorMsgData("字段验证不通过", invalidResultList);
         }
+        logger.error(ex.toString());
         return errorObject;
     }
 }

@@ -1,7 +1,9 @@
 package com.pengchant.form;
 
 import io.swagger.annotations.ApiModel;
+import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -10,10 +12,10 @@ import javax.validation.constraints.NotNull;
 @ApiModel(description = "用户登录表单" , value = "登录表单")
 public class LoginForm {
 
-    @NotNull(message = "账户不能为空")
+    @NotBlank(message = "账户不能为空")
     private String account;
 
-    @NotNull(message = "密码不能为空")
+    @NotBlank(message = "密码不能为空")
     private String pwd;
 
     public void setAccount(String account) {

@@ -13,6 +13,10 @@ public class Comment {
 
     private Integer lev;
 
+    private String suber;
+
+    private Integer suberid;
+
     private Integer articleid;
 
     private String b1;
@@ -59,6 +63,22 @@ public class Comment {
 
     public void setLev(Integer lev) {
         this.lev = lev;
+    }
+
+    public String getSuber() {
+        return suber;
+    }
+
+    public void setSuber(String suber) {
+        this.suber = suber == null ? null : suber.trim();
+    }
+
+    public Integer getSuberid() {
+        return suberid;
+    }
+
+    public void setSuberid(Integer suberid) {
+        this.suberid = suberid;
     }
 
     public Integer getArticleid() {

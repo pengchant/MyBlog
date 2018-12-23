@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.pengchant.mapper.ArticleMapper" >
-  <resultMap id="BaseResultMap" type="com.pengchant.model.Article" >
-    <id column="article_id" property="articleId" jdbcType="INTEGER" />
-    <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="describtion" property="describtion" jdbcType="VARCHAR" />
-    <result column="subtime" property="subtime" jdbcType="TIMESTAMP" />
-    <result column="viewed" property="viewed" jdbcType="INTEGER" />
-    <result column="shared" property="shared" jdbcType="INTEGER" />
-    <result column="greated" property="greated" jdbcType="INTEGER" />
-    <result column="sts" property="sts" jdbcType="TINYINT" />
-    <result column="suber" property="suber" jdbcType="INTEGER" />
-    <result column="b_1" property="b1" jdbcType="CHAR" />
-    <result column="b_2" property="b2" jdbcType="CHAR" />
-    <result column="b_3" property="b3" jdbcType="CHAR" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.pengchant.model.Article" extends="BaseResultMap" >
-    <result column="content" property="content" jdbcType="LONGVARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.pengchant.mapper.ArticleMapper">
+    <resultMap id="BaseResultMap" type="com.pengchant.model.Article">
+        <id column="article_id" property="articleId" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="describtion" property="describtion" jdbcType="VARCHAR"/>
+        <result column="subtime" property="subtime" jdbcType="TIMESTAMP"/>
+        <result column="viewed" property="viewed" jdbcType="INTEGER"/>
+        <result column="shared" property="shared" jdbcType="INTEGER"/>
+        <result column="greated" property="greated" jdbcType="INTEGER"/>
+        <result column="sts" property="sts" jdbcType="TINYINT"/>
+        <result column="suber" property="suber" jdbcType="INTEGER"/>
+        <result column="b_1" property="b1" jdbcType="CHAR"/>
+        <result column="b_2" property="b2" jdbcType="CHAR"/>
+        <result column="b_3" property="b3" jdbcType="CHAR"/>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.pengchant.model.Article" extends="BaseResultMap">
+        <result column="content" property="content" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     article_id, title, describtion, subtime, viewed, shared, greated, sts, suber, b_1, 
     b_2, b_3
   </sql>
-  <sql id="Blob_Column_List" >
+    <sql id="Blob_Column_List">
     content
   </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from article
-    where article_id = #{articleId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from article
+        where article_id = #{articleId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from article
     where article_id = #{articleId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.pengchant.model.Article" >
+    <insert id="insert" parameterType="com.pengchant.model.Article">
     insert into article (article_id, title, describtion, 
       subtime, viewed, shared, 
       greated, sts, suber, 
@@ -49,134 +49,134 @@
       #{b1,jdbcType=CHAR}, #{b2,jdbcType=CHAR}, #{b3,jdbcType=CHAR}, #{content,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.pengchant.model.Article" >
-    insert into article
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="articleId != null" >
-        article_id,
-      </if>
-      <if test="title != null" >
-        title,
-      </if>
-      <if test="describtion != null" >
-        describtion,
-      </if>
-      <if test="subtime != null" >
-        subtime,
-      </if>
-      <if test="viewed != null" >
-        viewed,
-      </if>
-      <if test="shared != null" >
-        shared,
-      </if>
-      <if test="greated != null" >
-        greated,
-      </if>
-      <if test="sts != null" >
-        sts,
-      </if>
-      <if test="suber != null" >
-        suber,
-      </if>
-      <if test="b1 != null" >
-        b_1,
-      </if>
-      <if test="b2 != null" >
-        b_2,
-      </if>
-      <if test="b3 != null" >
-        b_3,
-      </if>
-      <if test="content != null" >
-        content,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="articleId != null" >
-        #{articleId,jdbcType=INTEGER},
-      </if>
-      <if test="title != null" >
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="describtion != null" >
-        #{describtion,jdbcType=VARCHAR},
-      </if>
-      <if test="subtime != null" >
-        #{subtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="viewed != null" >
-        #{viewed,jdbcType=INTEGER},
-      </if>
-      <if test="shared != null" >
-        #{shared,jdbcType=INTEGER},
-      </if>
-      <if test="greated != null" >
-        #{greated,jdbcType=INTEGER},
-      </if>
-      <if test="sts != null" >
-        #{sts,jdbcType=TINYINT},
-      </if>
-      <if test="suber != null" >
-        #{suber,jdbcType=INTEGER},
-      </if>
-      <if test="b1 != null" >
-        #{b1,jdbcType=CHAR},
-      </if>
-      <if test="b2 != null" >
-        #{b2,jdbcType=CHAR},
-      </if>
-      <if test="b3 != null" >
-        #{b3,jdbcType=CHAR},
-      </if>
-      <if test="content != null" >
-        #{content,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.pengchant.model.Article" >
-    update article
-    <set >
-      <if test="title != null" >
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="describtion != null" >
-        describtion = #{describtion,jdbcType=VARCHAR},
-      </if>
-      <if test="subtime != null" >
-        subtime = #{subtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="viewed != null" >
-        viewed = #{viewed,jdbcType=INTEGER},
-      </if>
-      <if test="shared != null" >
-        shared = #{shared,jdbcType=INTEGER},
-      </if>
-      <if test="greated != null" >
-        greated = #{greated,jdbcType=INTEGER},
-      </if>
-      <if test="sts != null" >
-        sts = #{sts,jdbcType=TINYINT},
-      </if>
-      <if test="suber != null" >
-        suber = #{suber,jdbcType=INTEGER},
-      </if>
-      <if test="b1 != null" >
-        b_1 = #{b1,jdbcType=CHAR},
-      </if>
-      <if test="b2 != null" >
-        b_2 = #{b2,jdbcType=CHAR},
-      </if>
-      <if test="b3 != null" >
-        b_3 = #{b3,jdbcType=CHAR},
-      </if>
-      <if test="content != null" >
-        content = #{content,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where article_id = #{articleId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.pengchant.model.Article" >
+    <insert id="insertSelective" parameterType="com.pengchant.model.Article">
+        insert into article
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="articleId != null">
+                article_id,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="describtion != null">
+                describtion,
+            </if>
+            <if test="subtime != null">
+                subtime,
+            </if>
+            <if test="viewed != null">
+                viewed,
+            </if>
+            <if test="shared != null">
+                shared,
+            </if>
+            <if test="greated != null">
+                greated,
+            </if>
+            <if test="sts != null">
+                sts,
+            </if>
+            <if test="suber != null">
+                suber,
+            </if>
+            <if test="b1 != null">
+                b_1,
+            </if>
+            <if test="b2 != null">
+                b_2,
+            </if>
+            <if test="b3 != null">
+                b_3,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="articleId != null">
+                #{articleId,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="describtion != null">
+                #{describtion,jdbcType=VARCHAR},
+            </if>
+            <if test="subtime != null">
+                #{subtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="viewed != null">
+                #{viewed,jdbcType=INTEGER},
+            </if>
+            <if test="shared != null">
+                #{shared,jdbcType=INTEGER},
+            </if>
+            <if test="greated != null">
+                #{greated,jdbcType=INTEGER},
+            </if>
+            <if test="sts != null">
+                #{sts,jdbcType=TINYINT},
+            </if>
+            <if test="suber != null">
+                #{suber,jdbcType=INTEGER},
+            </if>
+            <if test="b1 != null">
+                #{b1,jdbcType=CHAR},
+            </if>
+            <if test="b2 != null">
+                #{b2,jdbcType=CHAR},
+            </if>
+            <if test="b3 != null">
+                #{b3,jdbcType=CHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.pengchant.model.Article">
+        update article
+        <set>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="describtion != null">
+                describtion = #{describtion,jdbcType=VARCHAR},
+            </if>
+            <if test="subtime != null">
+                subtime = #{subtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="viewed != null">
+                viewed = #{viewed,jdbcType=INTEGER},
+            </if>
+            <if test="shared != null">
+                shared = #{shared,jdbcType=INTEGER},
+            </if>
+            <if test="greated != null">
+                greated = #{greated,jdbcType=INTEGER},
+            </if>
+            <if test="sts != null">
+                sts = #{sts,jdbcType=TINYINT},
+            </if>
+            <if test="suber != null">
+                suber = #{suber,jdbcType=INTEGER},
+            </if>
+            <if test="b1 != null">
+                b_1 = #{b1,jdbcType=CHAR},
+            </if>
+            <if test="b2 != null">
+                b_2 = #{b2,jdbcType=CHAR},
+            </if>
+            <if test="b3 != null">
+                b_3 = #{b3,jdbcType=CHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where article_id = #{articleId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.pengchant.model.Article">
     update article
     set title = #{title,jdbcType=VARCHAR},
       describtion = #{describtion,jdbcType=VARCHAR},
@@ -192,7 +192,7 @@
       content = #{content,jdbcType=LONGVARCHAR}
     where article_id = #{articleId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.pengchant.model.Article" >
+    <update id="updateByPrimaryKey" parameterType="com.pengchant.model.Article">
     update article
     set title = #{title,jdbcType=VARCHAR},
       describtion = #{describtion,jdbcType=VARCHAR},
@@ -207,4 +207,32 @@
       b_3 = #{b3,jdbcType=CHAR}
     where article_id = #{articleId,jdbcType=INTEGER}
   </update>
+
+
+    <!-- 查询用户的文章 -->
+    <select id="queryUserArticle" parameterType="String" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from article
+        where suber=#{userid}
+        order by subtime desc
+    </select>
+
+    <!-- 查询首页文章列表 -->
+    <select id="queryAllArticle" resultType="com.pengchant.form.UserArticlesForm">
+        select
+            a.article_id as articleid,
+            a.suber as suberid,
+            u.headimgurl as imgurl,
+            u.nickname as nickname,
+            a.title as title,
+            a.describtion as describtion,
+            a.subtime as subtime,
+            a.viewed as viewed
+        from article a
+        left join bloguser u on (a.suber = u.user_id)
+        order by a.subtime desc
+    </select>
 </mapper>

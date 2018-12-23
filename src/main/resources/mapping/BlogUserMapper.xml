@@ -232,11 +232,11 @@
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 
-    <!-- 根据用户名查询用户 -->
-    <select id="searchByNick" resultType="long">
+    <!-- 根据用户名、email查询用户 -->
+    <select id="searchByNickEm" resultType="long">
         select count(1)
         from bloguser b
-        where nickname=#{nickname}
+        where nickname=#{searchStr} or email=#{searchStr}
     </select>
 
     <!-- 根据nickname/phone/email 查询 -->
@@ -246,5 +246,35 @@
         from bloguser
         where nickname=#{accstr} or phonenum=#{accstr} or email=#{accstr}
     </select>
+
+    <!-- 跟新用户的发文数 -->
+    <update id="updateArticles" parameterType="String">
+        update bloguser
+        set articles = ifnull(articles, 0) +1
+        where user_id=#{userid}
+    </update>
+
+    <!-- 更新人脉数量 -->
+    <update id="updateRenMai" parameterType="string">
+        update bloguser b
+        set b.friends = (
+            select count(1)
+            from friendship f
+            where f.user2=#{userid}
+        )
+        where b.user_id=#{userid}
+    </update>
+
+    <!-- 更新发文数量 -->
+    <update id="updatemyArticles" parameterType="string">
+        update bloguser
+            set articles = (
+                select count(1)
+                from article a
+                where a.suber=#{userid}
+            )
+        where user_id=#{userid}
+    </update>
+
 
 </mapper>

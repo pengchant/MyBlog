@@ -18,11 +18,11 @@ public interface BlogUserMapper {
     int updateByPrimaryKey(BlogUser record);
 
     /**
-     * 根据用户nickname查询用户的信息
-     * @param nickname
+     * 根据用户nickname/email查询用户的信息
+     * @param searchStr
      * @return
      */
-    long searchByNick(String nickname);
+    long searchByNickEm(String searchStr);
 
     /**
      * 查询用户登录实体
@@ -30,6 +30,27 @@ public interface BlogUserMapper {
      * @return
      */
     List<BlogUser> queryLogin(String accstr);
+
+    /**
+     * 更新文章数量
+     * @param userid
+     * @return
+     */
+    long updateArticles(String userid);
+
+    /**
+     * 更新我的文章的数量
+     * @param userid
+     * @return
+     */
+    long updatemyArticles(String userid);
+
+    /**
+     * 更新人脉
+     * @param userid
+     * @return
+     */
+    long updateRenMai(String userid);
 
 
 }

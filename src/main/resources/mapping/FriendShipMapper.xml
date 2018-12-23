@@ -1,98 +1,98 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.pengchant.mapper.FriendShipMapper" >
-  <resultMap id="BaseResultMap" type="com.pengchant.model.FriendShip" >
-    <id column="friend_id" property="friendId" jdbcType="INTEGER" />
-    <result column="user1" property="user1" jdbcType="INTEGER" />
-    <result column="user2" property="user2" jdbcType="INTEGER" />
-    <result column="b_1" property="b1" jdbcType="CHAR" />
-    <result column="b_2" property="b2" jdbcType="CHAR" />
-    <result column="b_3" property="b3" jdbcType="CHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.pengchant.mapper.FriendShipMapper">
+    <resultMap id="BaseResultMap" type="com.pengchant.model.FriendShip">
+        <id column="friend_id" property="friendId" jdbcType="INTEGER"/>
+        <result column="user1" property="user1" jdbcType="INTEGER"/>
+        <result column="user2" property="user2" jdbcType="INTEGER"/>
+        <result column="b_1" property="b1" jdbcType="CHAR"/>
+        <result column="b_2" property="b2" jdbcType="CHAR"/>
+        <result column="b_3" property="b3" jdbcType="CHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     friend_id, user1, user2, b_1, b_2, b_3
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from friendship
-    where friend_id = #{friendId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from friendship
+        where friend_id = #{friendId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from friendship
     where friend_id = #{friendId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.pengchant.model.FriendShip" >
+    <insert id="insert" parameterType="com.pengchant.model.FriendShip">
     insert into friendship (friend_id, user1, user2, 
       b_1, b_2, b_3)
     values (#{friendId,jdbcType=INTEGER}, #{user1,jdbcType=INTEGER}, #{user2,jdbcType=INTEGER}, 
       #{b1,jdbcType=CHAR}, #{b2,jdbcType=CHAR}, #{b3,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.pengchant.model.FriendShip" >
-    insert into friendship
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="friendId != null" >
-        friend_id,
-      </if>
-      <if test="user1 != null" >
-        user1,
-      </if>
-      <if test="user2 != null" >
-        user2,
-      </if>
-      <if test="b1 != null" >
-        b_1,
-      </if>
-      <if test="b2 != null" >
-        b_2,
-      </if>
-      <if test="b3 != null" >
-        b_3,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="friendId != null" >
-        #{friendId,jdbcType=INTEGER},
-      </if>
-      <if test="user1 != null" >
-        #{user1,jdbcType=INTEGER},
-      </if>
-      <if test="user2 != null" >
-        #{user2,jdbcType=INTEGER},
-      </if>
-      <if test="b1 != null" >
-        #{b1,jdbcType=CHAR},
-      </if>
-      <if test="b2 != null" >
-        #{b2,jdbcType=CHAR},
-      </if>
-      <if test="b3 != null" >
-        #{b3,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.pengchant.model.FriendShip" >
-    update friendship
-    <set >
-      <if test="user1 != null" >
-        user1 = #{user1,jdbcType=INTEGER},
-      </if>
-      <if test="user2 != null" >
-        user2 = #{user2,jdbcType=INTEGER},
-      </if>
-      <if test="b1 != null" >
-        b_1 = #{b1,jdbcType=CHAR},
-      </if>
-      <if test="b2 != null" >
-        b_2 = #{b2,jdbcType=CHAR},
-      </if>
-      <if test="b3 != null" >
-        b_3 = #{b3,jdbcType=CHAR},
-      </if>
-    </set>
-    where friend_id = #{friendId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.pengchant.model.FriendShip" >
+    <insert id="insertSelective" parameterType="com.pengchant.model.FriendShip">
+        insert into friendship
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="friendId != null">
+                friend_id,
+            </if>
+            <if test="user1 != null">
+                user1,
+            </if>
+            <if test="user2 != null">
+                user2,
+            </if>
+            <if test="b1 != null">
+                b_1,
+            </if>
+            <if test="b2 != null">
+                b_2,
+            </if>
+            <if test="b3 != null">
+                b_3,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="friendId != null">
+                #{friendId,jdbcType=INTEGER},
+            </if>
+            <if test="user1 != null">
+                #{user1,jdbcType=INTEGER},
+            </if>
+            <if test="user2 != null">
+                #{user2,jdbcType=INTEGER},
+            </if>
+            <if test="b1 != null">
+                #{b1,jdbcType=CHAR},
+            </if>
+            <if test="b2 != null">
+                #{b2,jdbcType=CHAR},
+            </if>
+            <if test="b3 != null">
+                #{b3,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.pengchant.model.FriendShip">
+        update friendship
+        <set>
+            <if test="user1 != null">
+                user1 = #{user1,jdbcType=INTEGER},
+            </if>
+            <if test="user2 != null">
+                user2 = #{user2,jdbcType=INTEGER},
+            </if>
+            <if test="b1 != null">
+                b_1 = #{b1,jdbcType=CHAR},
+            </if>
+            <if test="b2 != null">
+                b_2 = #{b2,jdbcType=CHAR},
+            </if>
+            <if test="b3 != null">
+                b_3 = #{b3,jdbcType=CHAR},
+            </if>
+        </set>
+        where friend_id = #{friendId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.pengchant.model.FriendShip">
     update friendship
     set user1 = #{user1,jdbcType=INTEGER},
       user2 = #{user2,jdbcType=INTEGER},
@@ -101,4 +101,76 @@
       b_3 = #{b3,jdbcType=CHAR}
     where friend_id = #{friendId,jdbcType=INTEGER}
   </update>
+
+
+    <!-- 查询我的关注 -->
+    <select id="querymycared" parameterType="string" resultType="com.pengchant.form.MyCaredUser">
+        select b.user_id as userid,
+            b.headimgurl,
+            b.nickname
+        from friendship f
+        left join bloguser b on(f.user1=b.user_id)
+        where f.user2=#{myuserid}
+    </select>
+
+    <!-- 取消关注 -->
+    <delete id="cancelcared" parameterType="string">
+        delete from
+        friendship  where user2=#{myuserid} and user1=#{caredid}
+    </delete>
+
+    <!-- 查询我的粉丝 -->
+    <select id="selectmyfans" resultType="com.pengchant.form.MyFansUser" parameterType="String">
+        select
+            p.userid,
+            p.headimgurl,
+            p.nickname,
+            if(q.userid is not null, 1, 0) as flag
+        from
+        (
+            select distinct
+              b.user_id as userid,
+              b.headimgurl,
+              b.nickname
+            from friendship f
+                 join bloguser b on(f.user2=b.user_id)
+            where f.user1=#{myuserid}
+        ) p
+        left join
+        (
+            select m.userid
+            from (
+                select
+                    b.user_id as userid,
+                    b.headimgurl,
+                    b.nickname
+                from friendship f
+                     left join bloguser b on(f.user2=b.user_id)
+                where f.user1=#{myuserid}
+            ) m,
+            (
+                select b.user_id as userid,
+                    b.headimgurl,
+                    b.nickname
+                from friendship f
+                left join bloguser b on(f.user1=b.user_id)
+                where f.user2=#{myuserid}
+            ) n
+            where m.userid = n.userid
+        ) q
+        on (p.userid = q.userid)
+    </select>
+
+    <!-- 添加关注 -->
+    <insert id="addcared" parameterType="string">
+        insert into friendship(user1, user2) values(#{caredid}, #{myuserid});
+    </insert>
+
+    <!-- 查询是否已经关注某人 -->
+    <select id="hascared" resultType="int">
+        select count(1)
+        from friendship f
+        where f.user2=#{myuserid} and f.user1=#{bloguserid}
+    </select>
+
 </mapper>

@@ -4,9 +4,9 @@ server:
 spring:
   datasource:
     name: test
-    url: jdbc:mysql://127.0.0.1:3306/myblog
+    url: jdbc:mysql://localhost:3306/myblog?useUnicode=true&characterEncoding=utf8
     username: root
-    password: root
+    password: xzit_Cp$Yz_0310_just
     # 使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
@@ -34,6 +34,13 @@ spring:
       max-idle: 100
       min-idle: 1
 
+  mail:
+    default-encoding: UTF-8
+    host: smtp.163.com
+    password: XIAOPENG123
+    port: 25
+    protocol: smtp
+    username: 13961826751@163.com
 
 
 # mybatis 的相关配置
@@ -52,5 +59,17 @@ pagehelper:
 mytoken:
   appkey: 978dfsa7fc3a34e1261dsafec1245d
   ttlmillis:  1800000 # 测试设置30min过期1800000
+
+# myemail
+myemail:
+  from: 13961826751@163.com
+  subject1: 我的博客网站验证码
+  subject1pre: 你好，欢迎你注册博客网，你的验证码为：
+  subject2end: 谢谢您的支持！请尽快完成注册，验证码将在30分钟后失效！
+
+
+# img
+img:
+  location: /usr/local/myblog-img
 
 

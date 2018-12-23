@@ -113,7 +113,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                         request.setAttribute("current-user", user.getUserId());
                     } catch (Exception e) {
                         // 过期异常，重新生成新的token
-                        e.printStackTrace();
                         logger.info("token过期异常，重新生成新的token",e.getMessage());
                         showError(request, response, "token过期异常，重新生成新的token");
                         return false;
